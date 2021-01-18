@@ -4,11 +4,13 @@
 /* Tap Dance declarations */
 enum {
     MAC_2, // Macro 2: tap once for MAC_2A, twice for MAC_2B
+    MAC_6, // Macro 6: tap once for KC_VOLD, twice for KC_MUTE
 };
 
 /* Tap Dance definitions */
 qk_tap_dance_action_t tap_dance_actions[] = {
     [MAC_2] = ACTION_TAP_DANCE_DOUBLE(MAC_2A, MAC_2B),
+    [MAC_2] = ACTION_TAP_DANCE_DOUBLE(KC_VOLD, KC_MUTE),
 };
 
 /* keyboard layers */
@@ -32,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_CFL] = KC_OUT(  // keymap _CFL: Ctrl+Fn Layer
         RESET, _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,
         _______,        _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,	MAC_1,TD(MAC_2),MAC_3,
-        _______,        _______,MAC_SIGN,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,			MAC_4,  MAC_5,  MAC_6,
+        _______,        _______,MAC_SIGN,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,			MAC_4,  MAC_5,  TD(MAC_6),
 	            _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,			MAC_7,  MAC_8,  MAC_9,
         _______,_______,        _______,				_______,				_______,DYN_REC_START1,_______,	        _______,    MAC_10, MAC_11, MAC_12
     )
