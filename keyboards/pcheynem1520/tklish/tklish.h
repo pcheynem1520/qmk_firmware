@@ -89,7 +89,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
         case MAC_8: // sync all qmk_firmware repos
             if (record->event.pressed) {  // When keycode MAC_8 is pressed
                 SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) "notepad" SS_TAP(X_ENT)); // open notepad
-                SEND_STRING("git checkout master\ngit fetch original\ngit pull original master\ngit push fork master\ngit checkout personal\ngit pull . master\ngit push fork personal\n"); // paste git commands for syncing qmk_firmware repos
+                SEND_STRING("git checkout master\ngit fetch upstream\ngit pull upstream master\ngit push origin master\ngit checkout dev_personal\ngit pull . master\ngit push origin dev_personal\n"); // paste git commands for syncing qmk_firmware repos
                 SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_TAP(X_UP) SS_UP(X_LSFT) SS_DOWN(X_LCTL) "c" SS_UP(X_LCTL)); // copy sommand string
                 SEND_STRING(SS_DOWN(X_LALT) SS_TAP(X_F4) SS_UP(X_LALT)); // close Notepad
                 SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LSFT) "`" SS_UP(X_LSFT) SS_UP(X_LCTL) SS_DOWN(X_LCTL) "v" SS_UP(X_LCTL)); // run sync commands
