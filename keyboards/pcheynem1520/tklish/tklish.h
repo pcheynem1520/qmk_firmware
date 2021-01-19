@@ -112,7 +112,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
             if (record->event.pressed) {  // When keycode MAC_11 is pressed
                 SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) "PuTTY" SS_TAP(X_ENT) SS_TAP(X_ENT)); // open default PuTTY connection
                 SEND_STRING(SS_DELAY(1500)); // wait for login
-                SEND_STRING("screen" SS_TAP(ENTER)); // create new screen in PuTTY
+                SEND_STRING("screen" SS_TAP(X_ENT) SS_TAP(X_ENT)); // create new screen in PuTTY
                 SEND_STRING("transmission-cli -er -v -w /srv/storage/'To Sort' " SS_DOWN(X_LGUI) "v" SS_UP(X_LGUI) SS_TAP(X_DOWN) SS_TAP(X_ENT) SS_TAP(X_ENT)); // start torrent download in screen session
                 SEND_STRING(SS_DOWN(X_LGUI) "a" SS_UP(X_LGUI) "d" SS_DOWN(X_LALT) SS_TAP(X_F4) SS_UP(X_LALT)); // detach from screen and close PuTTY
             } else {  // When keycode MAC_11 is released
