@@ -18,7 +18,7 @@ enum keycodes {
     MAC_3, // Macro 3: volume up
     MAC_4, // Macro 4:
     MAC_5, // Macro 5: power off
-    MAC_6, // Macro 6: (single tap): volume down, (double tap): mute *****currently defined directly in keymap.c, below kept to maintain template form*****
+//  MAC_6, // Macro 6: (single tap): volume down, (double tap): mute *****currently defined directly in keymap.c, below kept to maintain template form*****
     MAC_7, // Macro 7: print-screen and save to Pictures folder
     MAC_8, // Macro 8: sync all qmk_firmware repos
     MAC_9, // Macro 9: sleep
@@ -62,21 +62,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
 
         case MAC_3: // volume up (in macro to maintain form)
             if (record->event.pressed) {  // When keycode MAC_3 is pressed
-                KC_VOLU;
+                SEND_STRING(SS_TAP(X_VOLU));
             } else {  // When keycode MAC_3 is released
             }
             break;
 
         case MAC_4:
             if (record->event.pressed) {  // When keycode MAC_4 is pressed
-                _______;
+
             } else {  // When keycode MAC_4 is released
             }
             break;
 
         case MAC_5: // turn off machine (defined as such to maintain template form)
             if (record->event.pressed) {  // When keycode MAC_5 is pressed
-                KC_PWR;
+                SEND_STRING(SS_TAP(X_PWR));
             } else {  // When keycode MAC_5 is released
             }
             break;
@@ -109,13 +109,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
 
         case MAC_9: // put machine to sleep (defined as such to maintain template form)
             if (record->event.pressed) {  // When keycode MAC_9 is pressed
-                KC_SLEP;
+                SEND_STRING(SS_TAP(X_SLEP));
             } else {  // When keycode MAC_9 is released
             }
             break;
         case MAC_10: // previous track (defined as such to maintain template form)
             if (record->event.pressed) {  // When keycode MAC_10 is pressed
-                KC_MPRV;
+                SEND_STRING(SS_TAP(X_MPRV));
             } else {  // When keycode MAC_10 is released
             }
             break;
@@ -131,7 +131,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
             break;
         case MAC_12: // next track (defined as such to maintain template form)
             if (record->event.pressed) {  // When keycode MAC_12 is pressed
-                KC_MNXT;
+                SEND_STRING(SS_TAP(X_MNXT));
             } else {  // When keycode MAC_12 is released
             }
             break;
