@@ -4,13 +4,11 @@
 /* Tap Dance declarations */
 enum {
     MAC_2, // Macro 2: tap once for MAC_2A, twice for MAC_2B
-    MAC_6, // Macro 6: tap once for KC_VOLD, twice for KC_MUTE
 };
 
 /* Tap Dance definitions */
 qk_tap_dance_action_t tap_dance_actions[] = {
     [MAC_2] = ACTION_TAP_DANCE_DOUBLE(MAC_2A, MAC_2B),
-    [MAC_2] = ACTION_TAP_DANCE_DOUBLE(KC_VOLD, KC_MUTE),
 };
 
 /* keyboard layers */
