@@ -6,9 +6,10 @@
 int i = 0;
 
 enum userspace_layers {
-    _BL = 0,  // Base Layer
-    _FL = 1,  // Fn Layer
-    _CFL = 2,  // Ctrl+Fn Layer
+    _BL = 0, // Base Layer
+    _FL = 1, // Fn Layer
+    _CFL = 2, // Ctrl+Fn Layer
+    _SCL = 3, // Macro board layer for school computers
 };
 
 // Enum of custom keycodes defined in process_record_user
@@ -27,7 +28,12 @@ enum keycodes {
     MAC_10, // Macro 10: skip to previous track (defined as such to maintain template form)
     MAC_11, // Macro 11: open ssh and download the magnet file in clipboard to server
     MAC_12, // Macro 12: skip to next track (defined as such to maintain template form)
-    gen_filename, // workaround to disallowing custom functions
+
+    SCL_SET, // Set up school computers for use
+    AUTOCAD, // Open Autodesk AutoCAD
+    M_EXCEL, // Open Microsoft Excel
+    M_WORD, // Open Microsoft Word
+    LTspice, // Open LTspice
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom keycode definitions i.e. macros
@@ -127,6 +133,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
             if (record->event.pressed) {  // When keycode MAC_12 is pressed
                 SEND_STRING(SS_TAP(X_MNXT));
             } else {  // When keycode MAC_12 is released
+            } break;
+
+        case SCL_SET: // Set up school computers for use
+            if (record->event.pressed) {  // When keycode SCL_SET is pressed
+                SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "chrome" SS_TAP(X_ENT)); // open chrome
+                SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LSFT) "n" SS_UP(X_LCTL) SS_UP(X_LSFT) SS_DELAY(100) SS_DOWN(X_LALT) SS_TAP(X_TAB) SS_UP(X_LALT) SS_DOWN(X_LALT) SS_TAP(X_F4) SS_UP(X_LALT)); // open incognito window and close main window
+                SEND_STRING(SS_DOWN(X_LCTL) "l" SS_UP(X_LCTL) "drive.google.com" SS_TAP(X_ENT) SS_DELAY(100)); // open Google Drive
+                SEND_STRING(SS_DOWN(X_LCTL) "t" SS_UP(X_LCTL) "mycourselink.lakeheadu.ca"); // open D2L
+
+                SEND_STRING(SS_DOWN(X_LGUI) "e" SS_UP(X_LGUI) SS_DELAY(100)); // open windows explorer
+                SEND_STRING(SS_DOWN(X_LCTL) "l" SS_UP(X_LCTL) "C:\\Users\\200416896\\Documents" SS_TAP(X_ENT) SS_DELAY(250)); // Navigate to Documents directory
+
+                SEND_STRING(SS_DOWN(X_LGUI) "e" SS_UP(X_LGUI) SS_DELAY(100)); // open windows explorer
+                SEND_STRING(SS_DOWN(X_LCTL) "l" SS_UP(X_LCTL) "D:\\University\\2021-2022\\Semester 1" SS_TAP(X_ENT)); // Navigate to USB drive directory
+            } else {  // When keycode SCL_SET is released
+            } break;
+
+        case AUTOCAD: // Open AutoCAD
+            if (record->event.pressed) {  // When keycode SCL_SET is pressed
+                SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "autocad" SS_TAP(X_ENT)); // open AutoCAD
+            } else {  // When keycode SCL_SET is released
+            } break;
+
+        case M_EXCEL: // Open Excel
+            if (record->event.pressed) {  // When keycode M_EXCEL is pressed
+                SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "excel" SS_TAP(X_ENT)); // open Excel
+            } else {  // When keycode M_EXCEL is released
+            } break;
+
+        case M_WORD: // Open Word
+            if (record->event.pressed) {  // When keycode M_WORD is pressed
+                SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "winword" SS_TAP(X_ENT)); // open Word
+            } else {  // When keycode M_WORD is released
+            } break;
+
+        case LTspice: // Open LTspice
+            if (record->event.pressed) {  // When keycode LTspice is pressed
+                SEND_STRING( SS_TAP(X_LGUI) SS_DELAY(100) "LTspice" SS_TAP(X_ENT)); // open LTspices
+            } else {  // When keycode LTspice is released
             } break;
     } return true;
 };
