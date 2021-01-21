@@ -9,7 +9,7 @@ enum userspace_layers {
     _BL = 0, // Base Layer
     _FL = 1, // Fn Layer
     _CFL = 2, // Ctrl+Fn Layer
-    _SCL = 3, // Macro board layer for school computers
+    _2ND = 3, // Secondary kb mode for macros
 };
 
 // Enum of custom keycodes defined in process_record_user
@@ -29,7 +29,7 @@ enum keycodes {
     MAC_11, // Macro 11: open ssh and download the magnet file in clipboard to server
     MAC_12, // Macro 12: skip to next track (defined as such to maintain template form)
 
-    SCL_SET, // Set up school computers for use
+    STARTUP, // Set up school computers for use
     AUTOCAD, // Open Autodesk AutoCAD
     M_EXCEL, // Open Microsoft Excel
     M_WORD, // Open Microsoft Word
@@ -136,9 +136,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
             } else {  // When keycode MAC_12 is released
             } break;
 
-        case SCL_SET: // Set up school computers for use
+        case STARTUP: // Set up school computers for use
             if (record->event.pressed) {  // When keycode SCL_SET is pressed
-                SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "chrome" SS_TAP(X_ENT)); // open chrome
+                SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "msedge" SS_TAP(X_ENT)); // open edge
                 SEND_STRING(SS_DOWN(X_LCTL) SS_DOWN(X_LSFT) "n" SS_UP(X_LCTL) SS_UP(X_LSFT) SS_DELAY(100) SS_DOWN(X_LALT) SS_TAP(X_TAB) SS_UP(X_LALT) SS_DOWN(X_LALT) SS_TAP(X_F4) SS_UP(X_LALT)); // open incognito window and close main window
                 SEND_STRING(SS_DOWN(X_LCTL) "l" SS_UP(X_LCTL) "drive.google.com" SS_TAP(X_ENT) SS_DELAY(100)); // open Google Drive
                 SEND_STRING(SS_DOWN(X_LCTL) "t" SS_UP(X_LCTL) "mycourselink.lakeheadu.ca"); // open D2L
