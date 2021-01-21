@@ -34,6 +34,7 @@ enum keycodes {
     M_EXCEL, // Open Microsoft Excel
     M_WORD, // Open Microsoft Word
     LTspice, // Open LTspice
+    DESKTOP, // Create new Windows desktop
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom keycode definitions i.e. macros
@@ -172,6 +173,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
             if (record->event.pressed) {  // When keycode LTspice is pressed
                 SEND_STRING( SS_TAP(X_LGUI) SS_DELAY(100) "LTspice" SS_TAP(X_ENT)); // open LTspices
             } else {  // When keycode LTspice is released
+            } break;
+
+        case DESKTOP: // Create new Windows desktop
+            if (record->event.pressed) {  // When keycode DESKTOP is pressed
+                SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LCTL) "d" SS_UP(X_LCTL) SS_UP(X_LGUI)); // create new dektop
+            } else {  // When keycode DESKTOP is released
             } break;
     } return true;
 };
