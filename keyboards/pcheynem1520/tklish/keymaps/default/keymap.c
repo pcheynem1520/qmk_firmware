@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,   KC_LBRC,KC_RBRC,KC_BSLS,    KC_INS, KC_HOME,KC_PGUP,
         KC_CAPS,KC_A,   KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,KC_QUOT,KC_ENT,				KC_DEL, KC_END, KC_PGDN,
 	    KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM,KC_DOT, KC_SLSH,        KC_RSFT,            KC_PSCR,KC_UP,  KC_PAUS,
-        KC_LCTL,KC_LGUI,KC_LALT,                KC_SPC,                         KC_RALT,KC_RGUI, LT(_FL,KC_APP),KC_RCTL,    KC_LEFT,KC_DOWN,KC_RGHT
+        KC_LCTL,KC_LGUI,KC_LALT,                KC_SPC,                         KC_RALT,KC_RGUI,        MO(_FL),KC_RCTL,    KC_LEFT,KC_DOWN,KC_RGHT
     ),
 
     [_FL] = ANSI_73(  // keymap _FL: Fn Layer
@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,    MAC_1,TD(MAC_2),MAC_3,
         _______,_______,MAC_SIGN,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,			MAC_4,  MAC_5,  TD(MAC_6),
         _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,			MAC_7,  MAC_8,  MAC_9,
-        _______,_______,_______,				_______,				        _______,DYN_REC_START1, _______,_______,    MAC_10, MAC_11, MAC_12
+        _______,_______,_______,				DYN_REC_STOP,                   _______,DYN_REC_START1, _______,_______,    MAC_10, MAC_11, MAC_12
     ),
 
     [_2ND] = ANSI_73(  // keymap _2ND: swap to secondary kb mode for macros
