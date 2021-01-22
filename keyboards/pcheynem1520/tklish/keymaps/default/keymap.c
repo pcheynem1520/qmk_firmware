@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         MO(_CFL),_______,_______,               KC_MPLY,                        _______,DYN_MACRO_PLAY1,_______,MO(_CFL),   KC_PDOT,KC_0,   KC_EQL
     ),
 
-    [_CFL] = ANSI_73(  // keymap _2ND: swap to secondary kb mode for macros
+    [_CFL] = ANSI_73(  // keymap _CFL: press Fn+Ctrl+Enter to swap to permanent secondary kb mode for macros
         TG(_BL),_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,RESET,
         _______,_______,M_WORD, _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,	MAC_1,TD(MAC_2),KC_VOLU,
         _______,AUTOCAD,MAC_SIGN,DESKTOP,_______,_______,_______,_______,_______,LTspice,_______,_______,TG(_CFL),			MAC_4,  MAC_5,  TD(MAC_6),
