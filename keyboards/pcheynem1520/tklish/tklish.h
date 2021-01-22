@@ -9,7 +9,6 @@ enum userspace_layers {
     _BL = 0, // Base Layer
     _FL = 1, // Fn Layer
     _CFL = 2, // Ctrl+Fn Layer
-    _2ND = 3, // Secondary kb mode for macros
 };
 
 // Enum of custom keycodes defined in process_record_user
@@ -18,16 +17,16 @@ enum keycodes {
     MAC_1, // Macro 1: "64-bit" video link
     MAC_2A, // Macro 2: (single tap): create new dektop and open PuTTY terminal
     MAC_2B, // Macro 2: (double tap): create new dektop, open PuTTY terminal, AND VNC connection
-    MAC_3, // Macro 3:
+//    MAC_3, // Macro 3: Volume up
     MAC_4, // Macro 4: delete all
     MAC_5, // Macro 5: power off
-    MAC_6, // Macro 6:
+//    MAC_6, // Macro 6: defined in keymap.c
     MAC_7, // Macro 7: print-screen and save to Pictures folder
     MAC_8, // Macro 8: sync all qmk_firmware repos
     MAC_9, // Macro 9: sleep
-    MAC_10, // Macro 10: skip to previous track (defined as such to maintain template form)
+//    MAC_10, // Macro 10: Previous track
     MAC_11, // Macro 11: open ssh and download the magnet file in clipboard to server
-    MAC_12, // Macro 12: skip to next track (defined as such to maintain template form)
+//    MAC_12, // Macro 12: Next track
 
     STARTUP, // Set up school computers for use
     AUTOCAD, // Open Autodesk AutoCAD
@@ -35,6 +34,8 @@ enum keycodes {
     M_WORD, // Open Microsoft Word
     LTspice, // Open LTspice
     DESKTOP, // Create new Windows desktop
+    W_CALC, // Default Windows calculator
+    VLC, // VLC media player
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom keycode definitions i.e. macros
@@ -65,13 +66,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
                 SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "C:\\Program Files\\RealVNC\\VNC Viewer\\vncviewer.exe" SS_TAP(X_ENT) "Mnemosyne" SS_TAP(X_ENT)); // open vnc connection
             } else {  // When keycode MAC_2 is released
             } break;
-
+/*
         case MAC_3:
             if (record->event.pressed) {  // When keycode MAC_3 is pressed
 
             } else {  // When keycode MAC_3 is released
             } break;
-
+*/
         case MAC_4: // delete all
             if (record->event.pressed) {  // When keycode MAC_4 is pressed
                 SEND_STRING(SS_DOWN(X_LCTRL) "a" SS_UP(X_LCTRL) SS_TAP(X_DEL));
@@ -83,18 +84,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
                 SEND_STRING(SS_DOWN(X_LGUI) "x" SS_UP(X_LGUI) SS_DELAY(100) "uu");
             } else {  // When keycode MAC_5 is released
             } break;
-
+/*
         case MAC_6:
             if (record->event.pressed) {  // When keycode MAC_6 is pressed
 
             } else {  // When keycode MAC_6 is released
             } break;
-
+*/
         case MAC_7: // print-screen and save to Pictures folder
             if (record->event.pressed) {  // When keycode MAC_7 is pressed
-                SEND_STRING(SS_TAP(X_PSCR) SS_DELAY(100) SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(200) "mspaint" SS_TAP(X_ENT) SS_DOWN(X_LCTL) "v" SS_UP(X_LCTL)); // open paint and paste screenshot
-                SEND_STRING(SS_TAP(X_LALT) "fa" SS_TAP(X_ENT) SS_DELAY(100) "y"); // save picture
-                SEND_STRING(SS_TAP(X_ENT) SS_DELAY(100) SS_DOWN(X_LALT) SS_DELAY(100) SS_TAP(X_F4) SS_UP(X_LALT)); // close paint
+                SEND_STRING(SS_TAP(X_PSCR) SS_DELAY(100) SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(200) "mspaint" SS_TAP(X_ENT) SS_DELAY(500) SS_DOWN(X_LCTL) "v" SS_UP(X_LCTL)); // open paint and paste screenshot
+                SEND_STRING(SS_TAP(X_LALT) "fa" SS_TAP(X_ENT) SS_DELAY(500) "y" SS_TAP(X_ENT) SS_DELAY(100)); // save picture
+                SEND_STRING(SS_DOWN(X_LALT) SS_DELAY(100) SS_TAP(X_F4) SS_UP(X_LALT)); // close paint
             } else {  // When keycode MAC_7 is released
             } break;
 
@@ -113,29 +114,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
                 SEND_STRING(SS_DOWN(X_LGUI) "x" SS_UP(X_LGUI) SS_DELAY(100) "us");
             } else {  // When keycode MAC_9 is released
             } break;
-
+/*
         case MAC_10: // previous track (defined as such to maintain template form)
             if (record->event.pressed) {  // When keycode MAC_10 is pressed
-                SEND_STRING(SS_TAP(X_MPRV));
+
             } else {  // When keycode MAC_10 is released
             } break;
-
+*/
         case MAC_11: // download torrent magnet from clipboard to personal server
             if (record->event.pressed) {  // When keycode MAC_11 is pressed
                 SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "PuTTY" SS_TAP(X_ENT) SS_DELAY(200) SS_TAP(X_ENT)); // open default PuTTY connection
                 SEND_STRING(SS_DELAY(1500)); // wait for login
                 SEND_STRING("screen" SS_TAP(X_ENT) SS_TAP(X_ENT) SS_DELAY(100)); // create new screen in PuTTY
-                SEND_STRING("transmission-cli -er -v -w /srv/storage/'To Sort' " SS_DELAY(200) SS_TAP(X_MS_BTN2) SS_DELAY(200) SS_TAP(X_ENT)); // start torrent download in screen session
-                SEND_STRING(SS_DOWN(X_LGUI) "a" SS_UP(X_LGUI) SS_DELAY(100) "d" SS_DELAY(100) SS_DOWN(X_LALT) SS_TAP(X_F4) SS_UP(X_LALT) SS_DELAY(100) SS_TAP(X_ENT)); // detach from screen and close PuTTY
+                SEND_STRING("transmission-cli -er -v -w /srv/storage/'To Sort' " SS_DOWN(X_LGUI) SS_TAP(X_UP) SS_UP(X_LGUI) SS_DELAY(250) SS_TAP(X_MS_BTN2) SS_DOWN(X_LGUI) SS_TAP(X_DOWN) SS_UP(X_LGUI) SS_DELAY(200) SS_TAP(X_ENT)); // start torrent download in screen session
+                SEND_STRING(SS_DOWN(X_LCTL) "a" SS_UP(X_LCTL) SS_DELAY(100) "d" SS_DELAY(100) SS_DOWN(X_LALT) SS_TAP(X_F4) SS_UP(X_LALT) SS_DELAY(100) SS_TAP(X_ENT)); // detach from screen and close PuTTY
             } else {  // When keycode MAC_11 is released
             } break;
-
+/*
         case MAC_12: // next track (defined as such to maintain template form)
             if (record->event.pressed) {  // When keycode MAC_12 is pressed
-                SEND_STRING(SS_TAP(X_MNXT));
+
             } else {  // When keycode MAC_12 is released
             } break;
-
+*/
         case STARTUP: // Set up school computers for use
             if (record->event.pressed) {  // When keycode SCL_SET is pressed
                 SEND_STRING(SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(100) "msedge" SS_TAP(X_ENT)); // open edge
@@ -178,6 +179,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
         case DESKTOP: // Create new Windows desktop
             if (record->event.pressed) {  // When keycode DESKTOP is pressed
                 SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LCTL) "d" SS_UP(X_LCTL) SS_UP(X_LGUI)); // create new dektop
+            } else {  // When keycode DESKTOP is released
+            } break;
+
+        case W_CALC: // Create new Windows desktop
+            if (record->event.pressed) {  // When keycode DESKTOP is pressed
+                SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LCTL) "calculator" SS_UP(X_LCTL) SS_UP(X_LGUI)); // open Windows calculator
+            } else {  // When keycode DESKTOP is released
+            } break;
+
+        case VLC: // VLC media player
+            if (record->event.pressed) {  // When keycode DESKTOP is pressed
+                SEND_STRING(SS_DOWN(X_LGUI) SS_DOWN(X_LCTL) "vlc" SS_UP(X_LCTL) SS_UP(X_LGUI)); // open VLC media player
             } else {  // When keycode DESKTOP is released
             } break;
     } return true;
