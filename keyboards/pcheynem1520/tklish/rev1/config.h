@@ -40,8 +40,8 @@
 // #define NO_DEBUG // Disable debugging
 // #define NO_PRINT // Disable printing / debugging using hid_listen
 // #define NO_ACTION_LAYER // Disable layers
-#define NO_ACTION_TAPPING // Disable tap dance and other tapping features
-#define NO_ACTION_ONESHOT // Disable one-shot modifiers
+//#define NO_ACTION_TAPPING // Disable tap dance and other tapping features
+//#define NO_ACTION_ONESHOT // Disable one-shot modifiers
 #define NO_ACTION_MACRO // Disable old - style macro handling using MACRO(), action_get_macro() (deprecated)
 #define NO_ACTION_FUNCTION // Disable old - style function handling using fn_actions, action_function() (deprecated)
 
