@@ -15,7 +15,7 @@ enum keycodes {
     MAC_3, // macro 3:
     MAC_4, // macro 4: delete all
     MAC_5, // macro 5: power off
-    MAC_6, // macro 6:
+//    MAC_6, // macro 6:
     MAC_7, // macro 7: print-screen and save to Pictures folder
     MAC_8, // macro 8: sync all qmk_firmware repos
     MAC_9, // macro 9: sleep
@@ -67,13 +67,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // custom key
                 SEND_STRING(SS_DOWN(X_LGUI) "x" SS_UP(X_LGUI) SS_DELAY(100) "uu");
             } else {  // when keycode MAC_5 is released
             } break;
-
+/* currently used by Tap Dance
         case MAC_6:
             if (record->event.pressed) {  // when keycode MAC_6 is pressed
 
             } else {  // when keycode MAC_6 is released
             } break;
-
+*/
         case MAC_7: // print-screen and save to Pictures folder
             if (record->event.pressed) {  // when keycode MAC_7 is pressed
                 SEND_STRING(SS_TAP(X_PSCR) SS_DELAY(100) SS_DOWN(X_LGUI) "r" SS_UP(X_LGUI) SS_DELAY(200) "mspaint" SS_TAP(X_ENT) SS_DELAY(500) SS_DOWN(X_LCTL) "v" SS_UP(X_LCTL)); // open paint and paste screenshot
@@ -146,13 +146,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // custom key
 
 /* Tap Dance declarations */
 enum {
-    MAC_2, // macro 2: tap once for MAC_2A, twice for MAC_2B
     MAC_6, // macro 6: tap once for KC_VOLD, twice for KC_MUTE
 };
 
 /* Tap Dance definitions */
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [MAC_2] = ACTION_TAP_DANCE_DOUBLE(MAC_2A, MAC_2B),
     [MAC_6] = ACTION_TAP_DANCE_DOUBLE(KC_VOLD, KC_MUTE),
 };
 
