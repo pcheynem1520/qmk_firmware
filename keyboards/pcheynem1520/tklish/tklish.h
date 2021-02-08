@@ -111,7 +111,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // Custom key
 
         case MAC_9: // put windows machine to sleep
             if (record->event.pressed) {  // When keycode MAC_9 is pressed
-                SEND_STRING(SS_DOWN(X_LGUI) "x" SS_UP(X_LGUI) SS_DELAY(100) "us");
+                SEND_STRING(SS_DOWN(X_LGUI) "x" SS_UP(X_LGUI) SS_DELAY(200) "us");
             } else {  // When keycode MAC_9 is released
             } break;
 /*
