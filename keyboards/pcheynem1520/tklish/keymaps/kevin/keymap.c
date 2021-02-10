@@ -4,10 +4,10 @@
 enum userspace_layers {
     _BL = 0, // base Layer
     _FL = 1, // Fn Layer
-    _CFL = 2, // Ctrl+Fn Layer
+    _FCL = 2, // Ctrl+Fn Layer
 };
 
-// enum of custom keycodes defined in process_record_user
+/* enum of custom keycodes defined in process_record_user */
 enum keycodes {
     MAC_SIGN = SAFE_RANGE, // email signature
     MAC_1, // macro 1: "64-bit" video link
@@ -64,7 +64,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {  // custom key
 
         case MAC_5: // turn off windows machine
             if (record->event.pressed) {  // when keycode MAC_5 is pressed
-                SEND_STRING(SS_DOWN(X_LGUI) "x" SS_UP(X_LGUI) SS_DELAY(100) "uu");
+                SEND_STRING(SS_DOWN(X_LGUI) "x" SS_UP(X_LGUI) SS_DELAY(200) "uu");
             } else {  // when keycode MAC_5 is released
             } break;
 /* currently used by Tap Dance
@@ -167,12 +167,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FL] = ANSI_73(  // keymap _FL: Fn Layer
         KC_GRV, KC_F1,  KC_F2,  KC_F3,  KC_F4,	KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,  KC_F10, KC_F11, KC_F12,_______,
         _______,KC_F13,	KC_F14,	KC_F15,	KC_F16, KC_F17,	KC_F18,	KC_F19,	KC_F20,	KC_F21,	KC_F22,	KC_F23,	KC_F24,_______,     KC_7,   KC_8,   KC_9,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,TG(_CFL),			KC_4,   KC_5,   KC_6,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,TG(_FCL),			KC_4,   KC_5,   KC_6,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,        _______,			KC_1,   KC_2,   KC_3,
-        MO(_CFL),_______,_______,               KC_MPLY,                        _______,DYN_MACRO_PLAY1,_______,MO(_CFL),   KC_PDOT,KC_0,   KC_EQL
+        MO(_FCL),_______,_______,               KC_MPLY,                        _______,DYN_MACRO_PLAY1,_______,MO(_FCL),   KC_PDOT,KC_0,   KC_EQL
     ),
 
-    [_CFL] = ANSI_73(  // keymap _CFL: press Fn+Ctrl+Enter to swap to permanent secondary kb mode for macros
+    [_FCL] = ANSI_73(  // keymap _FCL: press Fn+Ctrl+Enter to swap to permanent secondary kb mode for macros
         _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,RESET,
         _______,_______,M_WORD, _______,_______,_______,_______,_______,_______,_______,_______,_______,_______,_______,	MAC_1,TD(MAC_2),KC_VOLU,
         _______,_______,MAC_SIGN,DESKTOP,_______,_______,_______,_______,_______,_______,_______,_______,TG(_BL),			MAC_4,  MAC_5,  TD(MAC_6),
