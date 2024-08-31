@@ -1,0 +1,9 @@
+<h1>The TKL(ish) Keyboard.</h1>
+
+A compact 73-key, ANSI layout tenkeyless keyboard with the rightmost 2x4 grid of keys capable of functioning as the numpad keys 0-9, '.', and 'Enter'.
+
+![Base Layer](https://github.com/pcheynem1520/qmk_firmware/tree/personal/keyboards/pcheynem1520/tklish/images/the-tkl(ish)-keyboard_BASE.png)
+
+![Fn Layer](https://github.com/pcheynem1520/qmk_firmware/tree/personal/keyboards/pcheynem1520/tklish/images/the-tkl(ish)-keyboard_FN.png)
+
+![Fn+Ctrl Layer](https://github.com/pcheynem1520/qmk_firmware/tree/personal/keyboards/pcheynem1520/tklish/images/the-tkl(ish)-keyboard_FN+CTRL.png)
