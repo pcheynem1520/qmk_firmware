@@ -97,7 +97,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) { // custom keyc
 		/* email signature */
         case SIGN:
             if (record->event.pressed) { // when keycode SIGN is pressed
-                SEND_STRING("\n\n\nAll the best,\n\nPJ Cheyne-Miller\n(He/Him)\n0886276\n200416896\n");
+                SEND_STRING("\n\n\nAll the best,\n\nPJ (He/They)");
             } else { // when keycode SIGN is released
             } break;
 
